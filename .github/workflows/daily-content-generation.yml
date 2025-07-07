@@ -1,0 +1,80 @@
+name: Daily AI Content Generation
+
+on:
+  schedule:
+    # 每天北京时间上午9点运行 (UTC时间1点)
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  generate-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Create .env file
+      run: |
+        cat > .env << EOF
+        # AI工具公众号配置 (GitHub Actions版)
+        GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+        DEBUG=False
+        DRY_RUN=False
+        DATABASE_URL=sqlite:///ai_tools.db
+        
+        # 企业微信配置 (群机器人Webhook URL)
+        WECHAT_WEBHOOK_URL=${{ secrets.WECHAT_WEBHOOK_URL }}
+        
+        # 可选的其他API密钥
+        PRODUCTHUNT_TOKEN=${{ secrets.PRODUCTHUNT_TOKEN }}
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        EOF
+        
+    - name: Generate AI content
+      run: |
+        python ai_writer_github.py
+
+    - name: Upload generated content as artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: generated-content-${{ github.run_number }}
+        path: |
+          output/
+          logs/
+        retention-days: 30
+
+    - name: Notify on failure
+      if: failure()
+      run: |
+        python -c "
+        import requests
+        import os
+        webhook_url = os.getenv('WECHAT_WEBHOOK_URL')
+        if webhook_url:
+            requests.post(webhook_url, json={
+                'msgtype': 'text',
+                'text': {'content': '❌ AI内容生成失败，请检查GitHub Actions日志'}
+            })
+        "
+      env:
+        WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}

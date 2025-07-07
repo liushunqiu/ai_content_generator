@@ -1,0 +1,252 @@
+# AI内容生成器 - Git忽略文件
+
+# ===== 敏感信息和配置文件 =====
+# 环境变量文件（包含API密钥）
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# API密钥和配置文件
+config.json
+secrets.json
+api_keys.txt
+
+# ===== Python相关 =====
+# 字节码文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 分发/打包
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# 单元测试/覆盖率报告
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# 虚拟环境
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ===== 生成的内容和输出文件 =====
+# AI生成的文章
+output/
+data/
+media/
+
+# 日志文件
+logs/
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+temp/
+tmp/
+
+# 备份文件
+*.bak
+*.backup
+*~
+
+# ===== IDE和编辑器 =====
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== 操作系统 =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== 数据库文件 =====
+*.db
+*.sqlite
+*.sqlite3
+ai_tools.db
+
+# ===== 缓存和临时文件 =====
+# pip缓存
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 缓存目录
+.cache/
+cache/
+
+# Node.js (如果有前端组件)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== 测试和调试文件 =====
+# 测试输出
+test_output/
+test_results/
+
+# 调试文件
+debug.log
+debug_*.txt
+
+# 性能分析文件
+*.prof
+
+# ===== 项目特定文件 =====
+# 生成的测试文件
+test_*.py
+*_test.py
+
+# 临时脚本
+scratch.py
+temp_*.py
+test.py
+
+# 下载的数据文件
+downloads/
+*.csv
+*.json
+*.xml
+
+# 图片缓存
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+
+# 但保留示例图片和文档图片
+!docs/*.png
+!docs/*.jpg
+!examples/*.png
+!examples/*.jpg
+!README_images/
+
+# ===== 部署相关 =====
+# Docker
+.dockerignore
+Dockerfile.local
+
+# 部署脚本
+deploy.sh
+deploy_local.sh
+
+# ===== 其他 =====
+# 压缩文件
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 文档生成
+docs/_build/
+site/
+
+# 本地配置覆盖
+local_settings.py
+settings_local.py
+
+# 用户特定配置
+user_config.json
+personal_settings.json

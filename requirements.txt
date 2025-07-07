@@ -1,0 +1,16 @@
+# AI工具公众号自动化内容生成系统 - 精简版依赖
+
+# 核心依赖
+google-generativeai>=0.8.0
+requests>=2.31.0
+feedparser>=6.0.0
+schedule>=1.2.0
+python-dotenv>=1.0.0
+
+# 图片和排版功能
+Pillow>=10.0.0          # 图片处理
+matplotlib>=3.7.0       # 图表生成
+
+# 可选依赖（用于扩展功能）
+# beautifulsoup4>=4.12.0  # 网页内容解析
+# wechatpy>=1.8.0         # 微信公众号API
